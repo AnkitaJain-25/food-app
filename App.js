@@ -1,17 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "This is namaste food"),
-    React.createElement("h2", {}, "By ankita jain"), //for sibling create array of children
-  ]),
-  React.createElement("div", { id: "child2" }, [
-    React.createElement("h1", {}, "I'm an h1 tag"),
-    React.createElement("h2", {}, "I'm an h2 tag"), //for sibling create array of children
-  ]),
-]);
+// JSX (transpiled before it reaches the JS Engine) - Parcel - Babel
+
+// JSX => React.createElement => ReactElement-JS Object => HTMLElement(render)
+// React Element 
+
+const elem = <span>React Element</span>;
+const title = (
+  <h1 className="head">
+    { elem }
+    Namaste React using JSX
+  </h1>
+);
+
+// React Component
+// Class Based Component - OLD React
+// Functional Component - New React
+
+// React Functional Component
+// const Title = () => (
+//   <h1 className="head">Namaste React</h1>
+// )
+
+// Component composition - Component inside another component
+const HeadingComponent = () => (
+  <div id="container">
+    {/* <Title /> Component inside a component */}
+    { title /*React element inside a component */ }
+    <h1 className="head">Namaste React using Functional Component</h1>
+  </div>
+);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(parent);
+root.render(<HeadingComponent />);
