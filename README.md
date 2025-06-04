@@ -55,3 +55,8 @@ import {Component} from "path";
 (Normal JS utility Functions)
 - useState() - Superpowerful State variable
 - useEffect()
+
+# 2 types Routing in web apps
+- Client Side Routing -> Since all the components are already loaded in our app and when we click on the page it just loads that component and doesn't make any network call expect the network call for api
+
+- Server Side Routing -> you make a network call and page is coming from server and relodes the whole page
