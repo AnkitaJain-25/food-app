@@ -32,7 +32,8 @@
 .res-card {
     margin: 5px;
     padding: 5px;
-    width: 194px;
+    width: 193px;
+    border: 1px solid #f0f0f0;
     background-color: #f0f0f0;
 }
 
@@ -82,4 +83,9 @@
     text-decoration: none;
     color: inherit;
     height: auto;
+}
+
+.user-card {
+    padding: 10px;
+    border: 1px solid black;
 }

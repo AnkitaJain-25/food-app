@@ -60,3 +60,41 @@ import {Component} from "path";
 - Client Side Routing -> Since all the components are already loaded in our app and when we click on the page it just loads that component and doesn't make any network call expect the network call for api
 
 - Server Side Routing -> you make a network call and page is coming from server and relodes the whole page
+
+# Class Component Life Cycle
+ 
+ --- Mounting ---
+ 
+ Constructor (dummy)
+ Render (dummy)
+        <HTML Dummy>
+ Component Did Mount
+        <API Call>
+        <this.setState> -> State Variable is updated
+ 
+ --- UPDATE ---
+ 
+        render(API Data)
+        <HTML (new API Data)>
+        ComponentDidUpdate()
+ 
+ 
+ --- UNMOUNT ---
+ If I move away of the page then component Unmount is called
+  e.g: moving from about to contact page
+ 
+        ComponentWillUnmount()
+
+**Note: In function component you need to use return statement to unmount the component
+eg:
+useEffect(() => {
+    const timer = setInterval(() => {
+        console.log("react");
+    },1000)
+    console.log("useEffect");
+
+    return(() => {
+        clearInterval(timer);
+        console.log("useEffect Return");
+    })
+}, []); **
