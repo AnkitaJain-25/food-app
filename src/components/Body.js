@@ -1,30 +1,25 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { RES_URL } from "../utils/constants";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestaurantList from "../utils/useRestaurantList";
 
 const Body = () => {
   // State Variable - Super powerful variable
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
   const [searchText, setSearchText] = useState("");
+  const onlineStatus = useOnlineStatus();
+  const listOfRestaurants = useRestaurantList();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    setFilteredRestaurants(listOfRestaurants);
+  }, [listOfRestaurants]);
 
-  const fetchData = async () => {
-    const data = await fetch(RES_URL);
-    const json = await data.json();
-    setListOfRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+  if (onlineStatus === false)
+    return (
+      <h1>Looks like you're offline!! Please check your internet connection</h1>
     );
-    setFilteredRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
 
   // Conditional and ternary Rendering
   return listOfRestaurants.length === 0 ? (
@@ -56,9 +51,9 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.5
+              (res) => res.info.avgRating > 4.3
             );
-            setListOfRestaurants(filteredList);
+            setFilteredRestaurants(filteredList);
           }}
         >
           Top Rated Restaurant
