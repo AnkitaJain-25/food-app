@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import RestaurantCard, { withHigherRatings } from "./RestaurantCard";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useRestaurantList from "../utils/useRestaurantList";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   // State Variable - Super powerful variable
@@ -11,6 +12,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const onlineStatus = useOnlineStatus();
   const listOfRestaurants = useRestaurantList();
+  const RestaurantHigherRated = withHigherRatings(RestaurantCard);
 
   useEffect(() => {
     setFilteredRestaurants(listOfRestaurants);
@@ -20,6 +22,8 @@ const Body = () => {
     return (
       <h1>Looks like you're offline!! Please check your internet connection</h1>
     );
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   // Conditional and ternary Rendering
   return listOfRestaurants.length === 0 ? (
@@ -61,16 +65,30 @@ const Body = () => {
             Top Rated Restaurant
           </button>
         </div>
+        <div className="search m-2 p-2 flex items-center">
+          <input
+            className="border border-black p-2"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap px-0.5">
         {/* Restaurant Cards */}
         {filteredRestaurants.map((restaurant) => (
-          <div  className="m-2 p-2 w-50 rounded-lg bg-gray-100 hover:bg-gray-200" key={restaurant.info.id}>
+          <div
+            className="m-2 p-2 w-50 rounded-lg bg-gray-100 hover:scale-95 hover:origin-center hover:transition-all hover:duration-100 hover:ease-in"
+            key={restaurant.info.id}
+          >
             <Link
               to={"/restaurants/" + restaurant.info.id}
               className="resCard-menu"
             >
-              <RestaurantCard resData={restaurant} />
+              {restaurant.info.avgRating > 4.6 ? (
+                <RestaurantHigherRated resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )}
             </Link>
           </div>
         ))}
