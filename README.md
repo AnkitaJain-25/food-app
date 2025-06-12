@@ -98,3 +98,12 @@ useEffect(() => {
         console.log("useEffect Return");
     })
 }, []); **
+
+
+# Redux Toolkit
+    - Install libraries (@reduxjs/toolkit & react-redux)
+    - Build our store
+    - Connect our store to our app
+    - Create Slice (cartSlice)
+    - dispatch(action)
+    - Selector

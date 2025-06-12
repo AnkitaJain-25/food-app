@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const CategoryItemList = ({ item, dummy }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div className="w-8/12 mx-auto px-4">
       <div className="flex justify-between">
@@ -13,7 +21,6 @@ const CategoryItemList = ({ item, dummy }) => {
           <div className="font-thin flex-wrap">{item.info.description}</div>
         </div>
         <div className="ms-14 w-3/12 flex justify-center">
-          
           {item?.info.imageId && (
             <img
               className="rounded-lg min-w-40 object-cover"
@@ -22,7 +29,10 @@ const CategoryItemList = ({ item, dummy }) => {
             />
           )}
           <div className="absolute">
-            <button className="p-2 rounded-lg shadow-lg bg-black text-white">
+            <button
+              className="p-2 rounded-lg shadow-lg bg-black text-white cursor-pointer"
+              onClick={() => handleAddItem(item)}
+            >
               Add
             </button>
           </div>
