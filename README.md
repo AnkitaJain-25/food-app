@@ -107,3 +107,22 @@ useEffect(() => {
     - Create Slice (cartSlice)
     - dispatch(action)
     - Selector
+
+# Types of testing (developer)
+    - Unit Testing - Testing a specific unit of the application/Testing a specific unit in isolation
+    - Integration Testing - testing the integration of the component
+    - End to End Testing - e2e Testing - testing whole application flow
+
+# Setting up Testing in our app
+    - Install React Testing Library
+    - Install JEST
+    - Install Babel dependencies
+    - Configure Bable
+    - Configure Parcel Config file to disable default babel transpilation
+    - Jest configuration -- npm init jest@latest
+    - Install jsdom library
+    - Install @babel/preset-react - to make JSXwork in test cases
+    - Include @babel/preset-react inside my babel config
+    - Install @testing-library/jest-dom
+
+    __ => dunder

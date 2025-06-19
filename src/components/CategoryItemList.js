@@ -10,7 +10,7 @@ const CategoryItemList = ({ item, dummy }) => {
   };
 
   return (
-    <div className="w-8/12 mx-auto px-4">
+    <div className="w-8/12 mx-auto px-4" data-testid="food-items">
       <div className="flex justify-between">
         <div className="py-1">
           <div className="font-bold">{item.info.name}</div>

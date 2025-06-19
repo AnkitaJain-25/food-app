@@ -34,6 +34,7 @@ const Body = () => {
         <div className="m-2 p-2">
           <input
             type="text"
+            data-testid="search-input"
             className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
@@ -67,6 +68,8 @@ const Body = () => {
         </div>
         <div className="search m-2 p-2 flex items-center">
           <input
+            type="text"
+            data-testid="user-input"
             className="border border-black p-2"
             value={loggedInUser}
             onChange={(e) => setUserName(e.target.value)}

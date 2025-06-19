@@ -9,8 +9,8 @@ const Cart = () => {
     dispatch(clearCart());
   };
 
-  const handleRemoveItem = (item) => {
-    dispatch(removeItem(item));
+  const handleRemoveItem = (itemId) => {
+    dispatch(removeItem(itemId));
   };
 
   const cartItems = useSelector((store) => store.cart.items);
@@ -38,7 +38,7 @@ const Cart = () => {
             <div className="text-center">
               <button
                 className="p-2 m-2 cursor-pointer bg-black text-white rounded-lg"
-                onClick={() => handleRemoveItem(item)}
+                onClick={() => handleRemoveItem(item.info.id)}
               >
                 Remove Item
               </button>
